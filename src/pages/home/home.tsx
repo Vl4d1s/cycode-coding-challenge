@@ -20,7 +20,7 @@ const HomePage = () => {
         </a>
       </p>
       <Link to="/subscribe">
-        <Button>Go to Subscribe Page {">>"}</Button>
+        <Button>Go to Subscription page Page {">>"}</Button>
       </Link>
     </div>
   );
