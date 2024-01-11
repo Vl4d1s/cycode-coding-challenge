@@ -1,0 +1,28 @@
+.dropdown {
+  position: relative;
+  max-height: 200px; /* Adjust this value as needed */
+  overflow-y: auto;
+  position: relative;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background: white;
+  padding: 10px;
+}
+
+.dropdown input[type="text"] {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+input[type="checkbox"] {
+  margin-right: 10px;
+}

@@ -5,15 +5,16 @@ import useEscapeKey from "../../hooks/useEscapeKey";
 
 type ModalProps = {
   onClose: () => void;
+  content: JSX.Element;
 };
 
-const Modal: React.FC<ModalProps> = ({ onClose }) => {
+const Modal: React.FC<ModalProps> = ({ onClose, content }) => {
   useEscapeKey(onClose);
 
   return ReactDom.createPortal(
     <div>
       <div className={styles.overlay} onClick={onClose}></div>
-      <div className={styles.modal}>{/* Form elements */}</div>
+      <div className={styles.modal}>{content}</div>
     </div>,
     document.querySelector(".modal-container")!
   );
