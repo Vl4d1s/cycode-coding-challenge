@@ -1,0 +1,38 @@
+.container {
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.welcome {
+  font-size: 2em;
+  color: #0c0018;
+  margin-bottom: 20px;
+}
+
+.message {
+  font-size: 1em;
+  color: #787878;
+  margin-bottom: 40px;
+}
+
+.link {
+  color: #007bff;
+  text-decoration: none;
+}
+
+.developer {
+  background-color: #f5f5f5; /* Light grey background */
+  border: 1px solid #dcdcdc; /* Grey border */
+  border-radius: 4px; /* Rounded corners */
+  font-family: "Arial", sans-serif; /* Font style */
+  color: #333; /* Dark grey text color */
+  padding: 6px; /* Spacing inside the div */
+  width: 300px; /* Width of the div */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  text-align: center; /* Center the text */
+}
