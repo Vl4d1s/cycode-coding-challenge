@@ -6,21 +6,36 @@
   border: 1px solid #ddd;
   border-radius: 4px;
   background: white;
-  padding: 10px;
+  /* padding: 10px; */
 }
 
 .dropdown input[type="text"] {
-  width: 100%;
   padding: 8px;
-  margin-bottom: 10px;
+  margin: 10px auto;
+  border: 1px solid #ccc;
+  display: block;
+  width: 90%;
+}
+
+.dropdownHeader {
+  padding: 10px;
+  background-color: #f5f5f5;
+  cursor: pointer;
   border: 1px solid #ccc;
   border-radius: 4px;
+}
+
+.dropdownItems {
+  max-height: 200px; /* Adjust as needed */
+  overflow-y: auto;
 }
 
 .item {
   display: flex;
   align-items: center;
   margin-bottom: 5px;
+  margin-left: 10px; /* Move items to the left */
+  margin-top: 10px; /* Move items down */
 }
 
 input[type="checkbox"] {

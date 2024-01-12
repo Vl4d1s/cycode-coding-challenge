@@ -1,22 +1,32 @@
-import React, { useCallback, useState } from "react";
-import OrganizationsDropdown from "./organization-drop-down/organization-drop-down";
-import UsersDropdown from "./users-drop-down/users-drop-down";
+import React, { useCallback, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import OrganizationsDropdown from "./dropdown/organization/organization-drop-down";
+import UsersDropdown from "./dropdown/users/users-drop-down";
 import styles from "./subscription-form.module.css";
-import useOrganization from "../../hooks/useOrganization";
 import { Organization } from "../../types";
-import { filterUsersByOrganization } from "../../utils";
+import { OrganizationContext } from "../../context/organizations";
 
-const SubscriptionForm: React.FC = () => {
-  const [selectedOrg, setSelectedOrg] = useState<Organization | null>(null);
-  const [selectedUsers, setSelectedUsers] = useState(new Set<string>());
-  const { data, isLoading, error } = useOrganization();
+const SubscriptionForm = () => {
+  const {
+    organizations,
+    selectedOrg,
+    setSelectedOrg,
+    selectedUsers,
+    setSelectedUsers,
+    error,
+    isLoading,
+    filteredUsers,
+  } = useContext(OrganizationContext);
 
-  const filteredUsers = filterUsersByOrganization(data?.users, selectedOrg);
+  const navigate = useNavigate();
 
-  const handleOrgSelect = useCallback((org: Organization) => {
-    setSelectedOrg(org);
-    setSelectedUsers(new Set()); // Reset selected users when organization changes
-  }, []);
+  const handleOrgSelect = useCallback(
+    (org: Organization) => {
+      setSelectedOrg(org);
+      setSelectedUsers(new Set());
+    },
+    [setSelectedOrg, setSelectedUsers]
+  );
 
   const handleUserSelect = useCallback(
     (id: string) => {
@@ -25,11 +35,12 @@ const SubscriptionForm: React.FC = () => {
       else newSelectedUsers.add(id);
       setSelectedUsers(newSelectedUsers);
     },
-    [selectedUsers]
+    [selectedUsers, setSelectedUsers]
   );
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    navigate("/");
     // Submit logic here
   };
 
@@ -38,19 +49,13 @@ const SubscriptionForm: React.FC = () => {
 
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
-      <label>{selectedOrg?.name || "Choose Organization"}</label>
       <OrganizationsDropdown
-        organizations={data?.organizations || []}
+        organizations={organizations}
         selectedOrg={selectedOrg}
         onSelectOrg={handleOrgSelect}
       />
       {selectedOrg && (
         <>
-          <label>{`${
-            selectedUsers.size
-              ? `${selectedUsers.size} selected`
-              : "Choose Users"
-          }`}</label>
           <UsersDropdown
             users={filteredUsers}
             selectedUsers={selectedUsers}
@@ -58,7 +63,11 @@ const SubscriptionForm: React.FC = () => {
           />
         </>
       )}
-      <button type="submit" disabled={!selectedOrg || selectedUsers.size === 0}>
+      <button
+        id="submit-button"
+        type="submit"
+        disabled={!selectedOrg || selectedUsers.size === 0}
+      >
         Submit
       </button>
     </form>

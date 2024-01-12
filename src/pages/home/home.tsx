@@ -1,8 +1,27 @@
 import { Link } from "react-router-dom";
 import styles from "./home.module.css";
 import Button from "../../components/shered/button/button";
+import { useContext } from "react";
+import { OrganizationContext } from "../../context/organizations";
 
 const HomePage = () => {
+  const { selectedUsers, selectedOrg } = useContext(OrganizationContext);
+
+  if (selectedUsers.size > 0 && selectedOrg) {
+    const userList = Array.from(selectedUsers).map((user, index) => (
+      <li key={index}>{user}</li>
+    ));
+
+    return (
+      <div>
+        <h1>Subscribed!</h1>
+        <h2>Organization: {selectedOrg.name}</h2>
+        <h3>Selected Users:</h3>
+        <ul>{userList}</ul>
+      </div>
+    );
+  }
+
   return (
     <div className={styles.container}>
       <h2 className={styles.welcome}>
