@@ -8,6 +8,7 @@ import { OrganizationContext } from "../../context/organizations";
 import ErrorMessage from "../shered-components/error-message/error-message";
 import OrganizationsDropdown from "./dropdown/organization-drop-down/organization-drop-down";
 import styles from "./subscription-form.module.css";
+import Button from "../shered-components/button/button";
 
 const SubscriptionForm = () => {
   const {
@@ -66,13 +67,13 @@ const SubscriptionForm = () => {
         )}
       </div>
       <div className={styles.submitButtonContainer}>
-        <button
+        <Button
           id="submit-button"
           type="submit"
           disabled={!selectedOrg || selectedUsers.length === 0}
         >
           Submit
-        </button>
+        </Button>
       </div>
     </form>
   );

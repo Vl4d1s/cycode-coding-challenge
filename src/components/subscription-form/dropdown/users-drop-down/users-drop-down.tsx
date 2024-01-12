@@ -36,6 +36,7 @@ const UsersDropdown = ({
     <div className={styles.dropdown} ref={dropdownRef}>
       <div className={styles.dropdownHeader} onClick={() => setIsOpen(!isOpen)}>
         {lable}
+        <span className={styles.dropdownSymbol}>{isOpen ? "▲" : "▼"}</span>
       </div>
       {isOpen && (
         <>

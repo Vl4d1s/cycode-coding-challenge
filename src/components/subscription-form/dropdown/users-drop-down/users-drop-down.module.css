@@ -17,6 +17,13 @@
   width: 90%;
 }
 
+.dropdownSymbol {
+  float: right;
+  font-size: 12px;
+  transition: transform 0.3s ease;
+  color: #888;
+}
+
 .dropdownHeader {
   padding: 10px;
   background-color: #f5f5f5;

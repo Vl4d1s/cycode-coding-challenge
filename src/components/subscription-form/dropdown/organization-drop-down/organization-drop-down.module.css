@@ -31,3 +31,10 @@ input[type="radio"] {
   border: 1px solid #ccc;
   border-radius: 4px;
 }
+
+.dropdownSymbol {
+  float: right;
+  font-size: 12px;
+  transition: transform 0.3s ease;
+  color: #888;
+}
