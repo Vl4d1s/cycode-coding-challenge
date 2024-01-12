@@ -1,6 +1,6 @@
 .dropdown {
   position: relative;
-  max-height: 100%; /* Set to 40% of the modal's height */
+  max-height: 100%;
   overflow-y: auto;
   position: relative;
   border: 1px solid #ddd;
