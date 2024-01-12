@@ -1,24 +1,26 @@
-import { Organization } from "../../types";
+import { Organization, User } from "../../types";
+import styles from "./subscription-message.module.css";
 
 interface SubscriptionMessageProps {
   selectedOrg: Organization;
-  selectedUsers: Set<string>;
+  selectedUsers: User[];
 }
 
 const SubscriptionMessage = ({
   selectedOrg,
   selectedUsers,
 }: SubscriptionMessageProps) => {
-  const userList = Array.from(selectedUsers).map((user, index) => (
-    <li key={index}>{user}</li>
+  const userList = selectedUsers.map((user, index) => (
+    <li key={index} className={styles.userListItem}>
+      {index + 1}. {user.firstName} {user.lastName}
+    </li>
   ));
-
   return (
-    <div>
-      <h1>Subscribed!</h1>
-      <h2>Organization: {selectedOrg.name}</h2>
-      <h3>Selected Users id:</h3>
-      <ul>{userList}</ul>
+    <div className={styles.container}>
+      <h1 className={styles.title}>Subscribed!</h1>
+      <h2 className={styles.orgName}>Organization: {selectedOrg.name}</h2>
+      <h3>Selected Users:</h3>
+      <ul className={styles.userList}>{userList}</ul>
     </div>
   );
 };

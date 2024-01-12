@@ -1,5 +1,5 @@
 import styles from "./subscribe.module.css";
-import Button from "../../components/shered/button/button";
+import Button from "../../components/shered-components/button/button";
 import Modal from "../../components/modal/modal";
 import { useState } from "react";
 import SubscriptionForm from "../../components/subscription-form/subscription-form";

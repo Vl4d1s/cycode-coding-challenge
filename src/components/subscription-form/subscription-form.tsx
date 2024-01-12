@@ -1,10 +1,13 @@
-import React, { useCallback, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import OrganizationsDropdown from "./dropdown/organization/organization-drop-down";
-import UsersDropdown from "./dropdown/users/users-drop-down";
-import styles from "./subscription-form.module.css";
-import { Organization } from "../../types";
+import React, { useCallback, useContext } from "react";
+
+import { Organization, User } from "../../types";
+import Loader from "../shered-components/loader/loader";
+import UsersDropdown from "./dropdown/users-drop-down/users-drop-down";
 import { OrganizationContext } from "../../context/organizations";
+import ErrorMessage from "../shered-components/error-message/error-message";
+import OrganizationsDropdown from "./dropdown/organization-drop-down/organization-drop-down";
+import styles from "./subscription-form.module.css";
 
 const SubscriptionForm = () => {
   const {
@@ -23,17 +26,16 @@ const SubscriptionForm = () => {
   const handleOrgSelect = useCallback(
     (org: Organization) => {
       setSelectedOrg(org);
-      setSelectedUsers(new Set());
     },
-    [setSelectedOrg, setSelectedUsers]
+    [setSelectedOrg]
   );
 
   const handleUserSelect = useCallback(
-    (id: string) => {
-      const newSelectedUsers = new Set(selectedUsers);
-      if (newSelectedUsers.has(id)) newSelectedUsers.delete(id);
-      else newSelectedUsers.add(id);
-      setSelectedUsers(newSelectedUsers);
+    (user: User) => {
+      const userExists = selectedUsers.find((u) => u.id === user.id);
+      userExists
+        ? setSelectedUsers(selectedUsers.filter((u) => u.id !== user.id))
+        : setSelectedUsers([...selectedUsers, user]);
     },
     [selectedUsers, setSelectedUsers]
   );
@@ -41,11 +43,10 @@ const SubscriptionForm = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     navigate("/");
-    // Submit logic here
   };
 
-  if (isLoading) return <h1>Is Loading...</h1>;
-  if (error) return <h1>Error</h1>;
+  if (isLoading) return <Loader />;
+  if (error) return <ErrorMessage error={error} />;
 
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
@@ -66,7 +67,7 @@ const SubscriptionForm = () => {
       <button
         id="submit-button"
         type="submit"
-        disabled={!selectedOrg || selectedUsers.size === 0}
+        disabled={!selectedOrg || selectedUsers.length === 0}
       >
         Submit
       </button>

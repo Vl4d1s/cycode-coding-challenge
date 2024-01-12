@@ -6,9 +6,9 @@ interface OrganizationContextProps {
   users: User[];
   organizations: Organization[];
   selectedOrg: Organization | null;
-  selectedUsers: Set<string>;
+  selectedUsers: User[];
   setSelectedOrg: React.Dispatch<React.SetStateAction<Organization | null>>;
-  setSelectedUsers: React.Dispatch<React.SetStateAction<Set<string>>>;
+  setSelectedUsers: React.Dispatch<React.SetStateAction<User[]>>;
   isLoading: boolean;
   error: Error | null;
   filteredUsers: User[];
@@ -19,7 +19,7 @@ const initialContextValue: OrganizationContextProps = {
   organizations: [],
   filteredUsers: [],
   selectedOrg: null,
-  selectedUsers: new Set<string>(),
+  selectedUsers: [],
   setSelectedOrg: () => {},
   setSelectedUsers: () => {},
   isLoading: false,
@@ -43,7 +43,7 @@ export const OrganizationProvider = ({
   children: JSX.Element;
 }) => {
   const [selectedOrg, setSelectedOrg] = useState<Organization | null>(null);
-  const [selectedUsers, setSelectedUsers] = useState(new Set<string>());
+  const [selectedUsers, setSelectedUsers] = useState<User[]>([]);
   const { data, isLoading, error } = useOrganization();
 
   const filteredUsers = filterUsersByOrganization(data?.users, selectedOrg);

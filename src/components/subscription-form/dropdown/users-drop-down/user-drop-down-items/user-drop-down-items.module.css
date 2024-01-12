@@ -1,0 +1,12 @@
+.items {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+  margin-left: 10px;
+  margin-top: 10px;
+}

@@ -1,14 +1,15 @@
 import React from "react";
 import ReactDom from "react-dom";
-import styles from "./Modal.module.css";
-import useEscapeKey from "../../hooks/useEscapeKey";
 
-type ModalProps = {
+import useEscapeKey from "../../hooks/useEscapeKey";
+import styles from "./Modal.module.css";
+
+interface ModalProps {
   onClose: () => void;
   content: JSX.Element;
-};
+}
 
-const Modal: React.FC<ModalProps> = ({ onClose, content }) => {
+const Modal = ({ onClose, content }: ModalProps) => {
   useEscapeKey(onClose);
 
   return ReactDom.createPortal(
