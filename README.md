@@ -1,8 +1,6 @@
 # Cycode Coding Challenge
 ![screen](https://github.com/Vl4d1s/cycode-coding-challenge/assets/42187212/a362f69f-1f84-404b-895d-ef49bba69dc9)
 
-**Text:**
-
 * **State Management** - To manage the state between different pages, I chose to use the Context API solution. This solution will handle data fetching as well as organize and store user data.
 
 * **Styling** - Instead of using design system libraries like `MUI`, which I usually do, I decided to challenge myself and implement the functionality on my own. Although I am aware that `styled-components` can reduce the amount of CSS code and allow for component reusability, since this exercise is broad and I haven't worked with `styled-components` before, I preferred to go with `css-modules`.
