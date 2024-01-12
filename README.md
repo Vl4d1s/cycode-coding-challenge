@@ -1,30 +1,36 @@
-# React + TypeScript + Vite
+# Cycode Coding Challenge
+![screen](https://github.com/Vl4d1s/cycode-coding-challenge/assets/42187212/a362f69f-1f84-404b-895d-ef49bba69dc9)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Text:**
 
-Currently, two official plugins are available:
+* **State Management** - To manage the state between different pages, I chose to use the Context API solution. This solution will handle data fetching as well as organize and store user data.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+* **Styling** - Instead of using design system libraries like `MUI`, which I usually do, I decided to challenge myself and implement the functionality on my own. Although I am aware that `styled-components` can reduce the amount of CSS code and allow for component reusability, since this exercise is broad and I haven't worked with `styled-components` before, I preferred to go with `css-modules`.
 
-## Expanding the ESLint configuration
+* **Custom Hooks** - I created some custom hooks to encapsulate shared logic between components.
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+* **Shared Logic** - While there are similarities in the dropdowns' logic, there are also differences. Therefore, my decision was to separate them into individual components.
 
-- Configure the top-level `parserOptions` property like this:
+* **Data Fetching** - The data is retrieved from the public folder.
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
+* **Performance** - There were several tasks such as data caching, lazy loading, debounce on search, etc... Once again considering the wide scope of this challenge, I chose to utilize  React's memoization techniques to prevent unnecessary re-renders of components, especially those that are data-heavy (dropdowns)
+
+## Getting Started
+
+First, run the development server:
+
+```bash
+npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+
+Make sure you are running Node.js version 18 or higher.
+
+
+
