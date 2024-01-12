@@ -9,11 +9,11 @@
 }
 
 .submitButtonContainer {
-  margin-top: auto; /* Push the submit button to the bottom */
+  margin-top: auto;
 }
 
 .dropdownsContainer {
-  gap: 40px; /* Increase the gap between the dropdowns */
+  gap: 40px;
   width: 100%;
   margin-top: 10px;
 }
