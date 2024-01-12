@@ -1,13 +1,21 @@
-import styles from "./subscribe.module.css";
-import Button from "../../components/shered-components/button/button";
-import Modal from "../../components/modal/modal";
-import { useState } from "react";
-import SubscriptionForm from "../../components/subscription-form/subscription-form";
+import { useContext, useEffect, useState } from "react";
 
-const SubscribePage: React.FC = () => {
+import Modal from "../../components/modal/modal";
+import { OrganizationContext } from "../../context/organizations";
+import Button from "../../components/shered-components/button/button";
+import SubscriptionForm from "../../components/subscription-form/subscription-form";
+import styles from "./subscribe.module.css";
+
+const SubscribePage = () => {
+  const { setSelectedOrg, setSelectedUsers } = useContext(OrganizationContext);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleModal = () => setIsModalOpen(!isModalOpen);
+
+  useEffect(() => {
+    setSelectedOrg(null);
+    setSelectedUsers([]);
+  }, [setSelectedOrg, setSelectedUsers]);
 
   return (
     <div className={styles.container}>

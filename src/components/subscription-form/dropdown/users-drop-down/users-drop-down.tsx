@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import { useState, useRef } from "react";
 
 import { User } from "../../../../types";
 import { useOutsideClick } from "../../../../hooks/useOutsideClick";
@@ -11,11 +11,11 @@ type UsersDropdownProps = {
   onSelectUser: (user: User) => void;
 };
 
-const UsersDropdown: React.FC<UsersDropdownProps> = ({
+const UsersDropdown = ({
   users,
   selectedUsers,
   onSelectUser,
-}) => {
+}: UsersDropdownProps) => {
   const [filter, setFilter] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);

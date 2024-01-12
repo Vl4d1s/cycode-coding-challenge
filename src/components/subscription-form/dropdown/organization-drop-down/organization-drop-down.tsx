@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import { useState, useRef } from "react";
 
 import { Organization } from "../../../../types";
 import { useOutsideClick } from "../../../../hooks/useOutsideClick";
@@ -11,11 +11,11 @@ type OrganizationsDropdownProps = {
   onSelectOrg: (org: Organization) => void;
 };
 
-const OrganizationsDropdown: React.FC<OrganizationsDropdownProps> = ({
+const OrganizationsDropdown = ({
   organizations,
   selectedOrg,
   onSelectOrg,
-}) => {
+}: OrganizationsDropdownProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
 

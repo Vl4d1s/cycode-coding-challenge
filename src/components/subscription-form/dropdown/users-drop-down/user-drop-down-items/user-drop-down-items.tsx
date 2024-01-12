@@ -1,4 +1,3 @@
-import React from "react";
 import { User } from "../../../../../types";
 import styles from "./user-drop-down-items.module.css";
 
@@ -8,11 +7,11 @@ type DropdownItemsProps = {
   onSelectUser: (user: User) => void;
 };
 
-const DropdownItems: React.FC<DropdownItemsProps> = ({
+const DropdownItems = ({
   users,
   selectedUsers,
   onSelectUser,
-}) => (
+}: DropdownItemsProps) => (
   <div className={styles.items}>
     {users.map((user) => (
       <div key={user.id} className={styles.item}>

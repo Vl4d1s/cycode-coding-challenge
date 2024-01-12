@@ -1,5 +1,3 @@
-import React from "react";
-
 import { Organization } from "../../../../../types";
 import styles from "./organization-drop-down-items.module.css";
 
@@ -9,11 +7,11 @@ type DropdownItemsProps = {
   onSelectOrg: (org: Organization) => void;
 };
 
-const DropdownItems: React.FC<DropdownItemsProps> = ({
+const DropdownItems = ({
   organizations,
   selectedOrg,
   onSelectOrg,
-}) => {
+}: DropdownItemsProps) => {
   return (
     <>
       {organizations.map((org) => (
