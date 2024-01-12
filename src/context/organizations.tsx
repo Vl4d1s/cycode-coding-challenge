@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+
 import { Organization, User } from "../types";
 import useOrganization from "../hooks/useOrganization";
 
@@ -30,7 +31,7 @@ export const OrganizationContext =
   React.createContext<OrganizationContextProps>(initialContextValue);
 
 const filterUsersByOrganization = (
-  users: User[] | undefined,
+  users: User[],
   organization: Organization | null
 ): User[] => {
   if (!users || !organization) return [];
@@ -46,20 +47,23 @@ export const OrganizationProvider = ({
   const [selectedUsers, setSelectedUsers] = useState<User[]>([]);
   const { data, isLoading, error } = useOrganization();
 
-  const filteredUsers = filterUsersByOrganization(data?.users, selectedOrg);
+  const filteredUsers = filterUsersByOrganization(
+    data?.users || [],
+    selectedOrg
+  );
 
   return (
     <OrganizationContext.Provider
       value={{
-        organizations: data?.organizations || [],
-        users: data?.users || [],
-        selectedOrg,
-        setSelectedOrg,
-        selectedUsers,
-        setSelectedUsers,
         error,
+        selectedOrg,
         isLoading,
         filteredUsers,
+        selectedUsers,
+        setSelectedOrg,
+        setSelectedUsers,
+        users: data?.users || [],
+        organizations: data?.organizations || [],
       }}
     >
       {children}

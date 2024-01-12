@@ -41,6 +41,7 @@ const SubscriptionForm = () => {
   );
 
   const handleSubmit = (e: React.FormEvent) => {
+    e.stopPropagation();
     e.preventDefault();
     navigate("/");
   };

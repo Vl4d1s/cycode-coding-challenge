@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 
 import Modal from "../../components/modal/modal";
 import { OrganizationContext } from "../../context/organizations";
@@ -12,14 +12,15 @@ const SubscribePage = () => {
 
   const toggleModal = () => setIsModalOpen(!isModalOpen);
 
-  useEffect(() => {
+  const handleSubscribeButtonClick = () => {
     setSelectedOrg(null);
     setSelectedUsers([]);
-  }, [setSelectedOrg, setSelectedUsers]);
+    toggleModal();
+  };
 
   return (
     <div className={styles.container}>
-      <Button onClick={toggleModal}>Subscribe</Button>
+      <Button onClick={handleSubscribeButtonClick}>Subscribe</Button>
 
       {isModalOpen && (
         <Modal onClose={toggleModal} content={<SubscriptionForm />} />

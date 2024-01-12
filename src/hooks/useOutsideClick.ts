@@ -8,9 +8,19 @@ export const useOutsideClick = (
 ): void => {
   const handleClick = useCallback(
     (e: MouseEvent): void => {
-      if (ref.current && !ref.current.contains(e.target as Node)) {
-        callback();
-      }
+      let targetElement = e.target as HTMLElement;
+
+      do {
+        if (
+          targetElement === ref.current ||
+          targetElement.id === "submit-button"
+        ) {
+          return;
+        }
+        targetElement = targetElement.parentNode as HTMLElement;
+      } while (targetElement);
+
+      callback();
     },
     [ref, callback]
   );
