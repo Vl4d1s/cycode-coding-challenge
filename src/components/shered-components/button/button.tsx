@@ -5,11 +5,12 @@ interface ButtonProps {
   onClick?: () => void;
   children: React.ReactNode;
   type?: "button" | "submit";
+  id?: string;
 }
 
-const Button = ({ onClick, children, type = "button" }: ButtonProps) => {
+const Button = ({ onClick, children, type = "button", id }: ButtonProps) => {
   return (
-    <button type={type} onClick={onClick} className={styles.button}>
+    <button id={id} type={type} onClick={onClick} className={styles.button}>
       {children}
     </button>
   );

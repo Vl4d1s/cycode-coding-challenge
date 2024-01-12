@@ -51,27 +51,29 @@ const SubscriptionForm = () => {
 
   return (
     <form onSubmit={handleSubmit} className={styles.form}>
-      <OrganizationsDropdown
-        organizations={organizations}
-        selectedOrg={selectedOrg}
-        onSelectOrg={handleOrgSelect}
-      />
-      {selectedOrg && (
-        <>
+      <div className={styles.dropdownsContainer}>
+        <OrganizationsDropdown
+          organizations={organizations}
+          selectedOrg={selectedOrg}
+          onSelectOrg={handleOrgSelect}
+        />
+        {selectedOrg && (
           <UsersDropdown
             users={filteredUsers}
             selectedUsers={selectedUsers}
             onSelectUser={handleUserSelect}
           />
-        </>
-      )}
-      <button
-        id="submit-button"
-        type="submit"
-        disabled={!selectedOrg || selectedUsers.length === 0}
-      >
-        Submit
-      </button>
+        )}
+      </div>
+      <div className={styles.submitButtonContainer}>
+        <button
+          id="submit-button"
+          type="submit"
+          disabled={!selectedOrg || selectedUsers.length === 0}
+        >
+          Submit
+        </button>
+      </div>
     </form>
   );
 };
