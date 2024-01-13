@@ -11,7 +11,7 @@ const SubscriptionMessage = ({
   selectedUsers,
 }: SubscriptionMessageProps) => {
   const userList = selectedUsers.map((user, index) => (
-    <li key={index} className={styles.userListItem}>
+    <li key={user.id} className={styles.userListItem}>
       {index + 1}. {user.firstName} {user.lastName}
     </li>
   ));
