@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 
 import { Organization, User } from "../types";
 import useOrganization from "../hooks/useOrganization";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 interface OrganizationContextProps {
   users: User[];
@@ -43,8 +44,14 @@ export const OrganizationProvider = ({
 }: {
   children: JSX.Element;
 }) => {
-  const [selectedOrg, setSelectedOrg] = useState<Organization | null>(null);
-  const [selectedUsers, setSelectedUsers] = useState<User[]>([]);
+  const [selectedOrg, setSelectedOrg] = useLocalStorage<Organization | null>(
+    "selectedOrg",
+    null
+  );
+  const [selectedUsers, setSelectedUsers] = useLocalStorage<User[]>(
+    "selectedUsers",
+    []
+  );
   const { data, isLoading, error } = useOrganization();
 
   const filteredUsers = filterUsersByOrganization(
