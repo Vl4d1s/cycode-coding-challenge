@@ -1,5 +1,6 @@
 import { Organization } from "../../../../../types";
 import styles from "./organization-drop-down-items.module.css";
+import useLazyLoading from "../../../../../hooks/useLazyLoading";
 
 type DropdownItemsProps = {
   organizations: Organization[];
@@ -12,9 +13,11 @@ const DropdownItems = ({
   selectedOrg,
   onSelectOrg,
 }: DropdownItemsProps) => {
+  const { itemCount, loaderRef } = useLazyLoading();
+
   return (
     <>
-      {organizations.map((org) => (
+      {organizations.slice(0, itemCount).map((org) => (
         <div key={org.id} className={styles.item}>
           <input
             type="radio"
@@ -28,6 +31,9 @@ const DropdownItems = ({
           <label htmlFor={org.id}>{org.name}</label>
         </div>
       ))}
+      {itemCount < organizations.length && (
+        <span ref={loaderRef}>Loading...</span>
+      )}
     </>
   );
 };
