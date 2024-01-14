@@ -27,8 +27,9 @@ const SubscriptionForm = () => {
   const handleOrgSelect = useCallback(
     (org: Organization) => {
       setSelectedOrg(org);
+      setSelectedUsers([]);
     },
-    [setSelectedOrg]
+    [setSelectedOrg, setSelectedUsers]
   );
 
   const handleUserSelect = useCallback(
